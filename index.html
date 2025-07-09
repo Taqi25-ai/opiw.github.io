@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kepada Wanita Tersayang</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(135deg, #ffc0cb, #ffe4e1);
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 2.5em;
+      color: #ff69b4;
+    }
+
+    #formSection, #gameSection, #loveSection, #factsSection {
+      display: none;
+      padding: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    img {
+      margin-top: 20px;
+      width: 150px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+    }
+
+    #tebakGambar img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin: 10px;
+      cursor: pointer;
+      border: 3px solid white;
+      border-radius: 20px;
+    }
+
+    #loveWords {
+      margin: 20px 0;
+      font-size: 1.2em;
+      color: #fff0f5;
+      animation: slide 30s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    .card {
+      background-color: #fff5f8;
+      color: #ff1493;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 20px;
+      width: 80%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    }
+
+    .footerNote {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #ffe;
+      font-style: italic;
+    }
+
+    /* ANIMASI KARAKTER LUCU BERJALAN */
+    .walker {
+      position: fixed;
+      bottom: 30px;
+      left: -100px;
+      font-size: 3rem;
+      animation: walk 10s linear infinite;
+      z-index: 999;
+    }
+
+    @keyframes walk {
+      0% {
+        left: -100px;
+      }
+      100% {
+        left: 110%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bgMusic" hidden autoplay>
+    <source src="Andmesh Kamaleng - Cinta Luar Biasa (Official Music Video).mp3" type="audio/mp3">
+    Your browser does not support the audio tag.
+  </audio>
+
+  <h1>Hai sayang 💖</h1>
+
+  <div id="loveWords">
+    Kamu adalah cahaya di setiap pagi, dan pelukan hangat di malam sepi ini 💌 Kamu segalanya 💕
+  </div>
+
+  <div id="inputNameSection">
+    <p>Masukkan namamu dulu ya sayang 😊</p>
+    <input type="text" id="nameInput" placeholder="Nama dulu ya sayang..." required />
+    <br />
+    <button onclick="submitName()">Masuk</button>
+   <div class="footerNote">✨ Jangan malu-malu ya, isi nama  dulu ya✨</div>
+  </div>
+
+  <div id="formSection">
+    <p id="greeting"></p>
+    <img src="opiww.jpg" alt="Orang Tersayang" />
+    <button onclick="startGame()">Main Tebak Gambar 💘</button>
+  </div>
+
+  <div id="gameSection">
+    <h2>Tebak gambar yang cocok dengan  ini:</h2>
+    <p id="gombalText">"mana kah gambar Matahari..."</p>
+    <div id="tebakGambar">
+      <img src="matahari.jpeg" onclick="checkAnswer(true)" />
+      <img src="shoes.jpeg" onclick="checkAnswer(false)" />
+      <img src="ice cream.jpeg" onclick="checkAnswer(false)" />
+    </div>
+  </div>
+
+  <div id="loveSection">
+    <h2>💌 Untuk Opiw 💌</h2>
+    <p>Opiw adalah segalanya buat aku, jangan lupa senyum terus ya manis! 🥰</p>
+    <button onclick="showWalker()">Lihat kejutan lucu 💃</button>
+    <button onclick="showFacts()">Lanjut ➡ Fakta Tentang Opiw</button>
+  </div>
+
+  <div id="factsSection">
+    <h2>Fakta Tentang Opiw 😍</h2>
+    <div class="card">Opiw selalu bisa bikin aku senyum bahkan di hari paling sulit sekalipun.</div>
+    <div class="card">Ketawa Opiw itu kayak musik favorit aku, nagih banget 😘</div>
+    <div class="card">Aku bersyukur banget bisa kenal dan punya Opiw 💕</div>
+    <div class="card">Opiw itu unik, istimewa, dan luar biasa, jangan pernah berubah ya cantikku 🌷</div>
+    <p>💗 Terima kasih sudah jadi Penyemangat 💗</p>
+  </div>
+
+  <!-- EMOJI ANIMASI BERJALAN -->
+  <div id="walker" class="walker" style="display:none;">🐱‍👓</div>
+
+  <script>
+    function submitName() {
+      const name = document.getElementById('nameInput').value.trim();
+      if (!name) {
+        alert('Namanya harus diisi ya, sayang 💖');
+        return;
+      }
+
+      setTimeout(() => {
+        alert(`BOO! 😘 Hehe becanda, hai ${name} 💕`);
+        document.getElementById('inputNameSection').style.display = 'none';
+        document.getElementById('formSection').style.display = 'block';
+        document.getElementById('greeting').innerText = `Hai ${name}, kamu siap main game cinta? 😍`;
+      }, 500);
+    }
+
+    function startGame() {
+      document.getElementById('formSection').style.display = 'none';
+      document.getElementById('gameSection').style.display = 'block';
+    }
+
+    function checkAnswer(isCorrect) {
+      if (isCorrect) {
+        alert("Kamu benar! Karena kamu yang selalu bikin aku bersinar! ☀️❤️");
+        document.getElementById('gameSection').style.display = 'none';
+        document.getElementById('loveSection').style.display = 'block';
+      } else {
+        alert("Ups, coba lagi ya sayang 😘");
+      }
+    }
+
+    function showWalker() {
+      document.getElementById('walker').style.display = 'block';
+    }
+
+    function showFacts() {
+      document.getElementById('loveSection').style.display = 'none';
+      document.getElementById('factsSection').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
